@@ -1,0 +1,382 @@
+We are now moving from iterative section work to completing the visual structure of the Northweb homepage.
+
+The priority at this stage is DESIGN and LAYOUT, not final content.
+
+We will refine the content later.
+
+Keep the existing Header, Hero and Services visual direction.
+
+Complete the remaining homepage sections:
+
+1. Process refinement
+2. Projects
+3. Why Northweb / Value Proposition
+4. Final CTA
+5. Footer
+
+Do not create additional homepage sections beyond these.
+
+---
+
+## 1. PROCESS
+
+Keep the existing four-step structure but update the heading to:
+
+"Así convertimos una idea en una solución digital."
+
+Supporting text:
+
+"Trabajamos de forma cercana y ordenada para convertir tus objetivos en una solución que realmente funcione para tu negocio."
+
+Steps:
+
+01 — Entendemos
+
+Conocemos tu negocio, tus objetivos y las necesidades de tus usuarios.
+
+02 — Definimos
+
+Acordamos el alcance, las prioridades y un plan claro para avanzar.
+
+03 — Diseñamos y desarrollamos
+
+Convertimos la estrategia en una experiencia digital útil, accesible y rápida.
+
+04 — Lanzamos y mejoramos
+
+Publicamos, medimos y seguimos mejorando según las necesidades del proyecto.
+
+Keep the current editorial layout.
+
+Do not over-design this section.
+
+---
+
+# 2. PROJECTS
+
+Create:
+
+/src/sections/Projects.astro
+
+For now, use exactly THREE anonymous projects.
+
+Do not invent real client names, metrics, testimonials, awards, or claims.
+
+Use neutral labels:
+
+Proyecto 01
+Proyecto 02
+Proyecto 03
+
+The visual design is more important than the final content.
+
+Use placeholder project imagery or polished visual placeholders that can easily be replaced later.
+
+Suggested categories:
+
+Proyecto 01
+Sitio web
+
+Proyecto 02
+E-commerce
+
+Proyecto 03
+Sistema / Aplicación web
+
+Create an editorial portfolio composition rather than a generic card grid.
+
+Recommended layout:
+
+Desktop:
+
+One large featured project followed by two smaller projects.
+
+For example:
+
+┌─────────────────────────────────────┐
+│                                     │
+│          PROJECT 01                 │
+│          large visual               │
+│                                     │
+└─────────────────────────────────────┘
+
+┌───────────────────┐ ┌───────────────────┐
+│                   │ │                   │
+│    PROJECT 02     │ │    PROJECT 03     │
+│                   │ │                   │
+└───────────────────┘ └───────────────────┘
+
+Each project should include:
+
+- project number
+- category
+- project title
+- short placeholder description
+- "Ver proyecto →"
+
+Keep the cards visually sophisticated.
+
+Avoid generic SaaS dashboard cards.
+
+Use strong imagery and large visual areas.
+
+The section heading should be:
+
+"Proyectos seleccionados"
+
+Supporting copy:
+
+"Diseñamos y construimos experiencias digitales pensadas para personas y negocios reales."
+
+---
+
+# 3. WHY NORTHWEB / VALUE PROPOSITION
+
+Create:
+
+/src/sections/WhyNorthweb.astro
+
+Use a dark charcoal background.
+
+Heading:
+
+"Más que sitios web."
+
+Secondary heading:
+
+"Tecnología, diseño y resultados."
+
+Supporting copy:
+
+"Combinamos diseño, experiencia de usuario y desarrollo para crear soluciones digitales que realmente funcionan para tu negocio."
+
+Create a visually balanced list of capabilities:
+
+- Diseño centrado en usuarios
+- Desarrollo moderno
+- Accesibilidad
+- E-commerce
+- CRM y sistemas
+- Integraciones
+
+Do not turn this into a generic feature grid.
+
+Use an editorial composition with strong typography.
+
+Include a small set of supporting metrics only if they are clearly framed as capabilities rather than fabricated business claims.
+
+Do NOT invent years of experience, number of clients, revenue, conversion rates, or other statistics.
+
+---
+
+# 4. FINAL CTA
+
+Create:
+
+/src/sections/FinalCTA.astro
+
+The section should create a strong visual ending before the footer.
+
+Heading:
+
+"¿Tienes un proyecto en mente?"
+
+Supporting copy:
+
+"Cuéntanos qué quieres construir y encontremos juntos la mejor forma de hacerlo realidad."
+
+Primary CTA:
+
+"Hablemos de tu proyecto →"
+
+Secondary CTA:
+
+"Ver proyectos →"
+
+Use the Northweb orange as the primary action.
+
+The composition should be spacious and confident.
+
+Avoid excessive decorative elements.
+
+---
+
+# 5. FOOTER
+
+Create:
+
+/src/components/Footer.astro
+
+The footer should use the Northweb charcoal background.
+
+Include:
+
+Northweb Studio logo in its light/dark-background version.
+
+Descriptor:
+
+"Diseño y desarrollo digital"
+
+Navigation:
+
+Servicios
+Proyectos
+Proceso
+Nosotros
+Blog
+
+Services:
+
+Sitios web
+E-commerce
+CRM y sistemas
+Aplicaciones web
+
+Contact:
+
+Hablemos de tu proyecto →
+
+Social links should be placeholders for now.
+
+Include a subtle bottom area:
+
+© Northweb Studio
+
+Privacy / Aviso de privacidad
+
+Do not invent an address, phone number, email, or social media account.
+
+Keep the footer clean and editorial.
+
+---
+
+# GLOBAL DESIGN DIRECTION
+
+The complete homepage should feel like one coherent editorial experience.
+
+Use:
+
+- Northweb orange #F26522
+- Northweb green #4CAF50 sparingly
+- Charcoal #2F3E46
+- Slate #6B7884
+- Gray #E9EEF2
+- White #FFFFFF
+
+Typography:
+
+Inter:
+UI, navigation, body copy
+
+Merriweather:
+Headlines and editorial emphasis
+
+Maintain the existing design language.
+
+Avoid:
+
+- excessive rounded cards
+- excessive gradients
+- glassmorphism
+- generic SaaS layouts
+- fake statistics
+- fake client claims
+- unnecessary animation
+- excessive use of green
+- decorative elements that don't serve the content
+
+Prefer:
+
+- strong typography
+- whitespace
+- editorial composition
+- subtle borders
+- restrained shadows
+- large visual areas
+- clear hierarchy
+- orange used intentionally
+
+---
+
+# RESPONSIVE
+
+The entire homepage must work at:
+
+- mobile: 375px
+- tablet: 768px
+- desktop: 1440px
+
+Do not simply stack desktop layouts.
+
+Design intentional mobile compositions.
+
+Pay particular attention to:
+
+- project layouts
+- dark Why Northweb section
+- CTA
+- footer
+- typography scaling
+- spacing
+
+---
+
+# ACCESSIBILITY
+
+Maintain WCAG 2.2 AA principles.
+
+Ensure:
+
+- semantic sections
+- logical heading hierarchy
+- keyboard navigation
+- visible focus
+- accessible links
+- sufficient contrast
+- meaningful alt text
+- reduced-motion support
+
+---
+
+# IMPLEMENTATION
+
+Use:
+
+/src/sections/
+  Process.astro
+  Projects.astro
+  WhyNorthweb.astro
+  FinalCTA.astro
+
+And:
+
+/src/components/
+  Header.astro
+  Footer.astro
+  Button.astro
+  Card.astro
+  etc.
+
+Keep the homepage composable.
+
+Do not create a monolithic index.astro.
+
+Use the existing design-system tokens.
+
+Do not modify:
+
+/design-system/DESIGN-SYSTEM.md
+/design-system/tokens.json
+/design-system/visual/
+
+The design system remains the source of truth.
+
+Use npm, not pnpm.
+
+After implementation:
+
+1. Run npm run build.
+2. Fix all build/type errors.
+3. Verify the homepage works at desktop and mobile sizes.
+4. Report the files created/modified.
+5. Do not perform a major redesign after implementation; we will review the completed homepage visually first.

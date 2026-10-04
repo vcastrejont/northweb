@@ -1,0 +1,1 @@
+- [Browser verification](browser-verification.md) — shell Playwright may need the already-running Chromium executable rather than its default browser path.

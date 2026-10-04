@@ -1,0 +1,38 @@
+---
+import Heading from '../components/Heading.astro';
+import Section from '../components/Section.astro';
+
+const capabilities = [
+  { title: 'Diseño centrado en usuarios', note: 'Interfaces pensadas desde las personas que las usan.' },
+  { title: 'Desarrollo moderno', note: 'Código mantenible, rápido y bien estructurado.' },
+  { title: 'Accesibilidad', note: 'Criterios WCAG 2.2 AA como punto de partida.' },
+  { title: 'E-commerce', note: 'Tiendas simples de usar y de administrar.' },
+  { title: 'CRM y sistemas', note: 'Herramientas para ordenar clientes y procesos.' },
+  { title: 'Integraciones', note: 'Conexión entre las herramientas de tu negocio.' },
+];
+---
+
+<Section id="nosotros" tone="dark">
+  <div class="grid gap-12 lg:grid-cols-12 lg:gap-x-6">
+    <div class="lg:col-span-5">
+      <p class="border-l-2 border-primary pl-3 text-xs font-semibold tracking-[0.08em] text-white">POR QUÉ NORTHWEB</p>
+      <Heading level={2} font="display" class="mt-4 !text-white md:text-[56px]">Más que sitios web.</Heading>
+      <p class="mt-4 font-display text-xl font-bold leading-snug text-white md:text-2xl">
+        <span class="text-primary">Tecnología, diseño</span> y resultados.
+      </p>
+      <p class="mt-6 max-w-md text-base leading-relaxed text-white/80">
+        Combinamos diseño, experiencia de usuario y desarrollo para crear soluciones digitales que realmente funcionan para tu negocio.
+      </p>
+    </div>
+
+    <ul class="border-b border-white/20 lg:col-span-7 lg:col-start-6">
+      {capabilities.map(({ title, note }, i) => (
+        <li class="grid grid-cols-[2.5rem_1fr] items-baseline gap-x-3 border-t border-white/20 py-5 md:grid-cols-[3rem_1fr_1fr] md:gap-x-6 md:py-6">
+          <span class="text-sm font-semibold tabular-nums text-white/70">{String(i + 1).padStart(2, '0')}</span>
+          <span class="font-display text-xl leading-snug text-white md:text-2xl">{title}</span>
+          <span class="col-start-2 mt-1 text-sm leading-relaxed text-white/70 md:col-start-3 md:mt-0">{note}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Section>

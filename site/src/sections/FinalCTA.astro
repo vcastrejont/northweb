@@ -1,0 +1,27 @@
+---
+import Button from '../components/Button.astro';
+import Heading from '../components/Heading.astro';
+import Section from '../components/Section.astro';
+---
+
+<Section id="contacto" tone="subtle" class="border-t border-gray-100 md:py-32">
+  <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+    <div class="lg:col-span-8">
+      <p class="text-xs font-semibold tracking-[0.08em] text-charcoal"><span class="mr-3 inline-block h-0.5 w-8 bg-primary align-middle"></span>CONTACTO</p>
+      <Heading level={2} font="display" class="mt-5 max-w-3xl md:text-[56px] md:leading-[1.1]">¿Tienes un proyecto en mente?</Heading>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate">
+        Cuéntanos qué quieres construir y encontremos juntos la mejor forma de hacerlo realidad.
+      </p>
+    </div>
+    <div class="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
+      <Button href="#contacto-pendiente" class="!text-xl !font-bold !text-charcoal hover:!bg-charcoal hover:!text-white">
+        <span>Hablemos de tu proyecto</span><span aria-hidden="true" class="ml-2">→</span>
+      </Button>
+      <Button href="#proyectos" variant="secondary"><span>Ver proyectos</span><span aria-hidden="true" class="ml-2">→</span></Button>
+    </div>
+  </div>
+
+  <p id="contacto-pendiente" class="mt-10 max-w-xl border-l-2 border-primary pl-4 text-sm leading-relaxed text-charcoal">
+    Contacto pendiente: los datos de contacto y el formulario se publicarán próximamente. Por ahora no hay un canal de contacto disponible en este sitio.
+  </p>
+</Section>

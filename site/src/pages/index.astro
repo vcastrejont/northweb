@@ -1,9 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Hero from '../sections/Hero.astro';
-import Process from '../sections/Process.astro';
 import Services from '../sections/Services.astro';
+import Projects from '../sections/Projects.astro';
+import WhyNorthweb from '../sections/WhyNorthweb.astro';
+import Process from '../sections/Process.astro';
+import FinalCTA from '../sections/FinalCTA.astro';
 ---
 
 <BaseLayout>
@@ -12,5 +16,9 @@ import Services from '../sections/Services.astro';
     <Hero />
     <Services />
     <Process />
+    <Projects />
+    <WhyNorthweb />
+    <FinalCTA />
   </main>
+  <Footer />
 </BaseLayout>
