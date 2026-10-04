@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: Number(process.env.PORT || 23961),
+    allowedHosts: true,
   },
   vite: {
     plugins: [tailwindcss()],

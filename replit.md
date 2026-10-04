@@ -13,3 +13,12 @@ The imported website stays in `site/` and uses Astro, Tailwind CSS, TypeScript, 
 - Type check: `cd site && npm run typecheck`.
 
 The current website is static and requires no API keys, database, or session secret.
+
+## Design-system artifact
+
+The separate visual guide lives in `design-system/visual/`. It has its own npm dependencies; installing the website's dependencies does not install this artifact's dependencies.
+
+- Install: `cd design-system/visual && npm ci`.
+- Managed workflow: **design-system/visual: web**, using the artifact's generated `pnpm --filter @workspace/northweb run dev` launcher from the artifact directory. Dependencies are installed with npm using its existing lockfile.
+- Preview port: `23961` (the artifact router supplies `PORT` and `BASE_PATH`).
+- Verify: `cd design-system/visual && npm run typecheck && npm run build`.
