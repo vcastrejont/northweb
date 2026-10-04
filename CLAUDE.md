@@ -2,7 +2,9 @@
 
 ## Identity
 
-Northweb Studio is a modern independent digital studio specializing in:
+Northweb Studio is a digital design and development studio focused on websites, e-commerce, CRM/business systems and web applications.
+Specializing in:
+
 - Websites
 - E-commerce
 - CRM & business systems
@@ -15,6 +17,7 @@ It is NOT positioned primarily as a social-media marketing agency.
 ## Required context
 
 Before making design, UX, content, or frontend decisions, read:
+
 - `design-system/DESIGN-SYSTEM.md`
 - `design-system/tokens.json`
 - `README.md`
@@ -26,6 +29,7 @@ Treat the design system as the source of truth.
 The production website lives in `/site`.
 
 Preferred stack:
+
 - Astro
 - Tailwind CSS
 - TypeScript
@@ -35,6 +39,7 @@ Preferred stack:
 - Merriweather selectively for display/editorial headlines
 
 Priorities:
+
 1. Accessibility
 2. Performance
 3. SEO
@@ -42,6 +47,12 @@ Priorities:
 5. Semantic HTML
 6. Maintainability
 7. Visual polish
+
+## Package manager
+
+Use npm for dependency management.
+
+Do not use pnpm or yarn unless explicitly requested.
 
 ## Brand
 
@@ -59,6 +70,7 @@ Do not introduce recurring brand colors without updating the design system.
 Modern, premium, editorial, technical, approachable, precise.
 
 Avoid:
+
 - Generic agency templates
 - Excessive gradients
 - Neon aesthetics
@@ -85,6 +97,7 @@ Respect `prefers-reduced-motion`.
 ## Component architecture
 
 Inside `/site/src`:
+
 - `components/` — reusable UI primitives
 - `sections/` — page-level sections
 - `layouts/` — shared layouts

@@ -1,0 +1,67 @@
+---
+import Card from '../components/Card.astro';
+import Heading from '../components/Heading.astro';
+import Icon from '../components/Icon.astro';
+import Section from '../components/Section.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Sitios web',
+    description: 'Diseño y desarrollo de sitios corporativos, landing pages y portales especializados.',
+    href: '#sitios-web',
+    icon: 'M20 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8 21h8M12 17v4',
+  },
+  {
+    number: '02',
+    title: 'E-commerce',
+    description: 'Tiendas en línea, catálogos, pagos e integraciones para vender mejor.',
+    href: '#e-commerce',
+    icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.3 2.3a1 1 0 0 0 .7 1.7H17M17 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM9 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z',
+  },
+  {
+    number: '03',
+    title: 'CRM y sistemas',
+    description: 'Soluciones para administrar clientes, ventas y operaciones.',
+    href: '#crm-sistemas',
+    icon: 'M12 3c-4.4 0-8 1.8-8 4s3.6 4 8 4 8-1.8 8-4-3.6-4-8-4Zm-8 4v5c0 2.2 3.6 4 8 4s8-1.8 8-4V7M4 12v5c0 2.2 3.6 4 8 4s8-1.8 8-4v-5',
+  },
+  {
+    number: '04',
+    title: 'Aplicaciones web',
+    description: 'Desarrollo de herramientas y plataformas a la medida de tus necesidades.',
+    href: '#aplicaciones-web',
+    icon: 'm16 18 6-6-6-6M8 6l-6 6 6 6M14.5 4 9.5 20',
+  },
+];
+---
+
+<Section id="servicios" tone="subtle">
+  <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+    <div class="lg:col-span-7">
+      <p class="text-xs font-semibold tracking-[0.08em] text-primary">SERVICIOS</p>
+      <Heading level={2} font="display" class="mt-4 max-w-3xl">Soluciones digitales para tu negocio.</Heading>
+    </div>
+    <p class="max-w-xl text-base leading-relaxed text-slate lg:col-span-5 lg:pb-1">
+      Desde un sitio web profesional hasta sistemas personalizados, te ayudamos a encontrar la solución digital correcta para tus objetivos.
+    </p>
+  </div>
+
+  <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+    {services.map(({ number, title, description, href, icon }) => (
+      <Card class="flex min-h-[280px] flex-col transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-charcoal/20 hover:shadow-md">
+        <div class="flex items-start justify-between gap-4">
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
+            <Icon path={icon} size={23} />
+          </span>
+          <span class="text-sm font-semibold tabular-nums text-slate">{number}</span>
+        </div>
+        <Heading level={3} font="display" class="mt-8 text-[26px]">{title}</Heading>
+        <p class="mt-3 text-sm leading-relaxed text-slate">{description}</p>
+        <a class="mt-auto inline-flex min-h-11 items-center pt-5 text-sm font-semibold text-primary transition-colors duration-200 hover:text-primary-hover" href={href} aria-label={`Ver más sobre ${title}`}>
+          <span>Ver más</span><span aria-hidden="true" class="ml-2">→</span>
+        </a>
+      </Card>
+    ))}
+  </div>
+</Section>

@@ -1,0 +1,11 @@
+---
+type Item = { kind: 'do' | 'dont'; text: string };
+const { items } = Astro.props as { items: Item[] };
+---
+<div class="grid gap-3 sm:grid-cols-2">
+  {items.map(({ kind, text }) => (
+    <p class="rounded-xl border border-border bg-card p-4 text-sm leading-relaxed">
+      <span class="mr-2 font-semibold text-[#B8420C] dark:text-[#FFB389]">{kind === 'do' ? 'Do' : "Don't"}</span>{text}
+    </p>
+  ))}
+</div>

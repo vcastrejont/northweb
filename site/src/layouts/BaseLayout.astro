@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  image?: string;
+}
+
+const {
+  title = 'Northweb Studio | Diseño y desarrollo digital',
+  description = 'Diseñamos y desarrollamos sitios web, e-commerce y sistemas digitales para hacer crecer tu negocio.',
+  canonicalUrl,
+  image,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#2F3E46" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {image && <meta property="og:image" content={image} />}
+  </head>
+  <body>
+    <a class="sr-only focus:not-sr-only focus:absolute focus:left-5 focus:top-5 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-3 focus:text-charcoal" href="#main-content">Saltar al contenido principal</a>
+    <slot />
+  </body>
+</html>

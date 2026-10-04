@@ -1,0 +1,50 @@
+/* Derived from design-system/tokens.json. Keep this file aligned with that source of truth. */
+:root {
+  --nw-color-primary: #f26522;
+  --nw-color-primary-hover: #d95416;
+  --nw-color-secondary: #4caf50;
+  --nw-color-secondary-hover: #3e9142;
+  --nw-color-charcoal: #2f3e46;
+  --nw-color-slate: #6b7884;
+  --nw-color-gray-100: #e9eef2;
+  --nw-color-gray-50: #f7f9fa;
+  --nw-color-white: #ffffff;
+
+  --nw-font-sans: "Inter", sans-serif;
+  --nw-font-display: "Merriweather", serif;
+
+  --nw-radius-sm: 6px;
+  --nw-radius-md: 10px;
+  --nw-radius-lg: 16px;
+
+  --nw-shadow-sm: 0 2px 8px rgba(47, 62, 70, 0.06);
+  --nw-shadow-md: 0 8px 24px rgba(47, 62, 70, 0.1);
+  --nw-shadow-lg: 0 20px 50px rgba(47, 62, 70, 0.12);
+
+  --nw-container-max: 1200px;
+  --nw-gutter-desktop: 24px;
+  --nw-gutter-mobile: 20px;
+}
+
+@theme inline {
+  --color-primary: var(--nw-color-primary);
+  --color-primary-hover: var(--nw-color-primary-hover);
+  --color-secondary: var(--nw-color-secondary);
+  --color-secondary-hover: var(--nw-color-secondary-hover);
+  --color-charcoal: var(--nw-color-charcoal);
+  --color-slate: var(--nw-color-slate);
+  --color-gray-100: var(--nw-color-gray-100);
+  --color-gray-50: var(--nw-color-gray-50);
+  --color-white: var(--nw-color-white);
+
+  --font-sans: var(--nw-font-sans);
+  --font-display: var(--nw-font-display);
+
+  --radius-sm: var(--nw-radius-sm);
+  --radius-md: var(--nw-radius-md);
+  --radius-lg: var(--nw-radius-lg);
+
+  --shadow-sm: var(--nw-shadow-sm);
+  --shadow-md: var(--nw-shadow-md);
+  --shadow-lg: var(--nw-shadow-lg);
+}

@@ -1,0 +1,17 @@
+---
+const { name, size = 26 } = Astro.props as { name: string; size?: number };
+const paths: Record<string, string> = {
+  Website: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18"/>',
+  'E-commerce': '<path d="M3 4h2l2 11h12l2-8H6M9 20h.01M18 20h.01"/>',
+  CRM: '<circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 5v1"/>',
+  Applications: '<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/>',
+  Integrations: '<path d="M8 3v5M16 3v5M7 8h10v4a5 5 0 0 1-10 0zm5 9v4"/>',
+  Analytics: '<path d="M3 20h18M6 17v-5M12 17V5M18 17V9"/>',
+  Accessibility: '<circle cx="12" cy="4" r="1"/><path d="M4 8h16M12 8v6M12 14l-4 7M12 14l4 7"/>',
+  Automation: '<path d="m13 2-9 11h7l-1 9 10-12h-7z"/>',
+  SEO: '<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>',
+  Performance: '<path d="M4 18a9 9 0 1 1 16 0M12 13l4-4M8 20h8"/>',
+  Security: '<path d="M12 2 4 5v6c0 5 3 9 8 11 5-2 8-6 8-11V5zM9 12l2 2 4-4"/>',
+};
+---
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label={name} set:html={paths[name] ?? paths.Website} />

@@ -1,0 +1,17 @@
+---
+interface Props {
+  href?: string;
+  alt?: string;
+  size?: 'default' | 'header';
+  class?: string;
+}
+
+const { href = '/', alt = 'Northweb Studio', size = 'default', class: className } = Astro.props;
+const dimensions = size === 'header'
+  ? { width: 176, height: 53, className: 'w-36 md:w-44' }
+  : { width: 200, height: 60, className: 'w-[200px]' };
+---
+
+<a href={href} class:list={['inline-flex min-h-11 items-center', className]}>
+  <img src="/northweb-logo.svg" width={dimensions.width} height={dimensions.height} alt={alt} class:list={['h-auto', dimensions.className]} />
+</a>

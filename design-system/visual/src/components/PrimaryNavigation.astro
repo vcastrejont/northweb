@@ -1,0 +1,61 @@
+---
+const { cta = "Hablemos" } = Astro.props;
+const links = [
+  ["Marca", "brand-logo"],
+  ["Colores", "brand-colors"],
+  ["Tipografía", "type-scale"],
+  ["Layout", "layout-system"],
+  ["Contenido", "content-voice"],
+];
+---
+
+<nav
+  aria-label="Navegación de ejemplo"
+  class="bg-card p-5 text-card-foreground"
+>
+  <div class="flex items-center justify-between gap-5">
+    <a href="#page=overview" aria-label="Northweb Studio — inicio">
+      <img
+        src={`${import.meta.env.BASE_URL}northweb-logo.png`}
+        alt=""
+        width="150"
+        height="45"
+        class="h-auto w-36 rounded-sm bg-white"
+      />
+    </a>
+    <div class="hidden items-center gap-5 lg:flex">
+      {
+        links.map(([label, id]) => (
+          <a
+            class="text-sm font-medium hover:text-[#B8420C]"
+            href={`#page=${id}`}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <a class="nw-button nw-button-primary" href="#page=button">{cta}</a>
+    </div>
+    <details class="relative lg:hidden">
+      <summary
+        class="cursor-pointer rounded-lg border border-border px-3 py-2 text-sm"
+        >Menú</summary
+      >
+      <div
+        class="absolute right-0 z-10 mt-2 flex w-48 flex-col gap-2 rounded-xl border border-border bg-card p-4 shadow-lg"
+      >
+        {
+          links.map(([label, id]) => (
+            <a
+              class="rounded px-2 py-1 text-sm hover:bg-muted"
+              href={`#page=${id}`}
+            >
+              {label}
+            </a>
+          ))
+        }
+        <a class="nw-button nw-button-primary" href="#page=button">{cta}</a>
+      </div>
+    </details>
+  </div>
+</nav>

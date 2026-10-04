@@ -1,0 +1,9 @@
+---
+const { name, color, description } = Astro.props as { name: string; color: string; description?: string };
+---
+<div class="min-w-0">
+  <div class="h-24 rounded-xl border border-input" style={`background-color: ${color}`} />
+  <p class="mt-3 font-semibold">{name}</p>
+  <p class="mt-1 font-mono text-xs text-muted-foreground">{color}</p>
+  {description && <p class="mt-1 text-sm text-muted-foreground">{description}</p>}
+</div>

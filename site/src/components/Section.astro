@@ -1,0 +1,21 @@
+---
+import Container from './Container.astro';
+
+interface Props {
+  as?: 'section' | 'div';
+  id?: string;
+  tone?: 'default' | 'subtle' | 'dark';
+  class?: string;
+}
+
+const { as: Tag = 'section', id, tone = 'default', class: className } = Astro.props;
+const tones = {
+  default: 'bg-white text-charcoal',
+  subtle: 'bg-gray-50 text-charcoal',
+  dark: 'bg-charcoal text-white',
+};
+---
+
+<Tag id={id} class:list={['py-16 md:py-24', tones[tone], className]}>
+  <Container><slot /></Container>
+</Tag>

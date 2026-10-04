@@ -1,0 +1,251 @@
+---
+import "../index.css";
+import { entries, groups } from "../data/navigation";
+import Sections from "../components/Sections.astro";
+
+const title = "Northweb Studio Design System";
+const description =
+  "Una base visual clara para diseñar y desarrollar soluciones digitales útiles.";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+    <link
+      rel="icon"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+      type="image/svg+xml"
+    />
+  </head>
+  <body>
+    <div
+      class="min-h-screen bg-background text-foreground md:grid md:grid-cols-[260px_minmax(0,1fr)]"
+    >
+      <aside
+        class="border-b bg-sidebar text-sidebar-foreground md:sticky md:top-0 md:flex md:h-screen md:flex-col md:border-b-0 md:border-r md:border-sidebar-border"
+      >
+        <div class="border-b border-sidebar-border px-5 py-5">
+          <img
+            src={`${import.meta.env.BASE_URL}logo.svg`}
+            alt="Northweb Studio"
+            width="200"
+            height="60"
+            class="h-auto w-44 rounded-sm"
+          />
+          <p class="mt-4 text-xs font-semibold uppercase tracking-[0.14em]">
+            Design system
+          </p>
+          <p class="mt-1 text-xs text-muted-foreground">
+            Diseño y desarrollo digital
+          </p>
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            class="mt-4 min-h-11 rounded-lg border border-sidebar-border px-3 text-sm font-medium hover:bg-sidebar-accent"
+            >Modo oscuro</button
+          >
+        </div>
+        <div class="p-4 pb-2">
+          <input
+            id="nav-search"
+            type="search"
+            aria-label="Buscar en el sistema de diseño"
+            placeholder="Buscar en el sistema…"
+            class="h-11 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground"
+          />
+        </div>
+        <nav
+          aria-label="Navegación del sistema de diseño"
+          class="hidden min-h-0 flex-1 space-y-5 overflow-y-auto px-4 pb-4 pt-2 md:block"
+          data-navigation
+        >
+          <a
+            href="#page=overview"
+            data-entry="overview"
+            data-search="overview identidad fundamentos componentes"
+            class="nav-link">Overview</a
+          >
+          {
+            groups.map((group) => (
+              <div data-group>
+                <p class="px-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  {group.name}
+                </p>
+                <div class="mt-2 space-y-1 border-l pl-2">
+                  {group.entries.map(([id, name, text]) => (
+                    <a
+                      href={`#page=${id}`}
+                      data-entry={id}
+                      data-search={`${group.name} ${name} ${text}`}
+                      class="nav-link"
+                    >
+                      {name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+          <p data-empty hidden class="px-2 py-4 text-sm text-muted-foreground">
+            No hay secciones que coincidan.
+          </p>
+        </nav>
+        <details id="mobile-navigation" class="border-t px-4 py-3 md:hidden">
+          <summary class="cursor-pointer text-sm font-medium"
+            >Secciones: <span id="mobile-current" class="text-muted-foreground"
+              >Overview</span
+            ></summary
+          >
+          <nav
+            aria-label="Navegación móvil"
+            class="mt-3 max-h-64 space-y-2 overflow-y-auto pb-2"
+            data-navigation
+          >
+            {
+              entries.map((entry) => (
+                <a
+                  href={`#page=${entry.id}`}
+                  data-entry={entry.id}
+                  data-search={`${entry.group} ${entry.name} ${entry.description}`}
+                  class="nav-link"
+                >
+                  {entry.name}
+                </a>
+              ))
+            }
+            <p
+              data-empty
+              hidden
+              class="px-2 py-4 text-sm text-muted-foreground"
+            >
+              No hay secciones que coincidan.
+            </p>
+          </nav>
+        </details>
+      </aside>
+      <main class="min-w-0 px-6 py-10 sm:px-10 lg:px-14">
+        <div class="mx-auto max-w-5xl">
+          <header class="border-b border-border pb-8">
+            <p
+              id="page-group"
+              hidden
+              class="text-xs font-medium uppercase tracking-wide text-muted-foreground"
+            >
+            </p>
+            <h1
+              id="page-title"
+              class="font-serif text-3xl font-bold leading-tight sm:text-4xl"
+            >
+              {title}
+            </h1>
+            <p
+              id="page-description"
+              class="mt-3 max-w-2xl text-muted-foreground"
+            >
+              {description}
+            </p>
+          </header>
+          <div class="pt-8"><Sections /></div>
+        </div>
+      </main>
+    </div>
+    <script>
+      import { entries } from "../data/navigation";
+      const pages = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-page]"),
+      );
+      const search = document.querySelector<HTMLInputElement>("#nav-search")!;
+      const theme = document.querySelector<HTMLButtonElement>("#theme-toggle")!;
+      const mobile =
+        document.querySelector<HTMLDetailsElement>("#mobile-navigation")!;
+      const current = document.querySelector<HTMLElement>("#mobile-current")!;
+
+      function selectPage() {
+        const id =
+          new URLSearchParams(window.location.hash.slice(1)).get("page") ??
+          "overview";
+        const entry = entries.find((item) => item.id === id) ?? entries[0];
+        pages.forEach((page) => {
+          page.hidden = page.id !== entry.id;
+        });
+        document
+          .querySelectorAll<HTMLAnchorElement>("[data-entry]")
+          .forEach((link) => {
+            if (link.dataset.entry === entry.id)
+              link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+          });
+        const group = document.querySelector<HTMLElement>("#page-group")!;
+        group.textContent = entry.group;
+        group.hidden = !entry.group;
+        document.querySelector<HTMLElement>("#page-title")!.textContent =
+          entry.id === "overview"
+            ? "Northweb Studio Design System"
+            : entry.name;
+        document.querySelector<HTMLElement>("#page-title")!.className =
+          entry.id === "overview"
+            ? "font-serif text-3xl font-bold leading-tight sm:text-4xl"
+            : "mt-2 text-2xl font-semibold";
+        document.querySelector<HTMLElement>("#page-description")!.textContent =
+          entry.id === "overview"
+            ? "Una base visual clara para diseñar y desarrollar soluciones digitales útiles."
+            : entry.description;
+        current.textContent = entry.name;
+        mobile.open = false;
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+      window.addEventListener("hashchange", selectPage);
+      selectPage();
+
+      search.addEventListener("input", () => {
+        const q = search.value.trim().toLocaleLowerCase();
+        document
+          .querySelectorAll<HTMLElement>("[data-navigation]")
+          .forEach((nav) => {
+            let count = 0;
+            nav
+              .querySelectorAll<HTMLElement>("[data-entry]")
+              .forEach((link) => {
+                link.hidden = !(link.dataset.search ?? "")
+                  .toLocaleLowerCase()
+                  .includes(q);
+                if (!link.hidden) count++;
+              });
+            nav
+              .querySelectorAll<HTMLElement>("[data-group]")
+              .forEach((group) => {
+                group.hidden = !group.querySelector(
+                  "[data-entry]:not([hidden])",
+                );
+              });
+            nav.querySelector<HTMLElement>("[data-empty]")!.hidden = count > 0;
+          });
+      });
+      const setDark = (dark: boolean) => {
+        document.documentElement.classList.toggle("dark", dark);
+        theme.textContent = dark ? "Modo claro" : "Modo oscuro";
+        theme.setAttribute("aria-pressed", String(dark));
+        localStorage.setItem("northweb-preview-theme", dark ? "dark" : "light");
+      };
+      setDark(localStorage.getItem("northweb-preview-theme") === "dark");
+      theme.addEventListener("click", () =>
+        setDark(!document.documentElement.classList.contains("dark")),
+      );
+      document
+        .querySelector<HTMLButtonElement>("#demo-button")
+        ?.addEventListener("click", (event) => {
+          const button = event.currentTarget as HTMLButtonElement;
+          button.textContent = button.textContent?.startsWith("Listo")
+            ? "Hablemos de tu proyecto →"
+            : "Listo →";
+        });
+    </script>
+  </body>
+</html>

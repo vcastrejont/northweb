@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, description } = Astro.props;
+---
+<div class="space-y-2">
+  <p class="text-xs font-semibold uppercase tracking-[0.12em] text-[#B8420C] dark:text-[#FFB389]">{eyebrow}</p>
+  <h2 class="font-serif text-2xl font-bold leading-tight sm:text-3xl">{title}</h2>
+  {description && <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
+</div>

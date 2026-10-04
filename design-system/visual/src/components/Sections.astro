@@ -1,0 +1,695 @@
+---
+import { marked } from "marked";
+import guideSource from "../../DESIGN.md?raw";
+import tokens from "../../tokens.json";
+import Heading from "./Heading.astro";
+import Guidelines from "./Guidelines.astro";
+import Swatch from "./Swatch.astro";
+import PrimaryNavigation from "./PrimaryNavigation.astro";
+import Icon from "./Icon.astro";
+
+const light = tokens.color.light;
+const dark = tokens.color.dark;
+const brandColors = [
+  ["Orange / primary", light.primary.$value, "Acciones y énfasis"],
+  ["Green / secondary", light.secondary.$value, "Crecimiento y apoyo"],
+  ["Charcoal / accent", light.accent.$value, "Texto y fondos oscuros"],
+  ["Slate", light.mutedForeground.$value, "Metadatos y apoyo"],
+  ["Light gray", light.border.$value, "Bordes y divisores"],
+  ["White", light.background.$value, "Superficies principales"],
+] as const;
+const roles = [
+  "background",
+  "foreground",
+  "card",
+  "muted",
+  "border",
+  "input",
+  "ring",
+  "destructive",
+] as const;
+const iconNames = [
+  "Website",
+  "E-commerce",
+  "CRM",
+  "Applications",
+  "Integrations",
+  "Analytics",
+  "Accessibility",
+  "Automation",
+  "SEO",
+  "Performance",
+  "Security",
+];
+const sizes = [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 120, 160];
+const guide = guideSource.replace(
+  "docs/references/logos/logo.png",
+  `${import.meta.env.BASE_URL}northweb-logo.png`,
+);
+const guideHtml = await marked.parse(guide);
+---
+
+<section id="overview" data-page class="space-y-10">
+  <div
+    class="rounded-2xl bg-accent px-7 py-10 text-accent-foreground sm:px-12 sm:py-14"
+  >
+    <p class="text-xs font-semibold uppercase tracking-[0.12em] text-[#FFB389]">
+      DISEÑO Y DESARROLLO DIGITAL
+    </p>
+    <h2
+      class="mt-5 max-w-3xl font-serif text-[44px] font-bold leading-[1.08] sm:text-[56px]"
+    >
+      Soluciones digitales para hacer crecer <span
+        class="text-primary dark:text-[#FFB389]">tu negocio.</span>
+    </h2>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed">
+      Diseñamos y desarrollamos sitios web, e-commerce y sistemas digitales que
+      ayudan a las empresas a trabajar mejor y crecer.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="nw-button nw-button-primary" href="#page=button"
+        >Explorar botones →</a
+      >
+      <a class="nw-button nw-button-text text-white" href="#page=content-voice"
+        >Conocer la voz de marca →</a
+      >
+    </div>
+  </div>
+  <div class="space-y-5">
+    <Heading
+      eyebrow="01 / Core palette"
+      title="Una paleta con intención."
+      description="El naranja guía la interacción. El verde acompaña. El carbón aporta estructura."
+    />
+    <div class="grid gap-4 sm:grid-cols-3">
+      {
+        brandColors
+          .slice(0, 3)
+          .map(([name, color, description]) => (
+            <Swatch name={name} color={color} description={description} />
+          ))
+      }
+    </div>
+  </div>
+  <div class="space-y-5">
+    <Heading
+      eyebrow="02 / Components"
+      title="Cuatro familias esenciales."
+      description="Los componentes que el documento de marca especifica, mostrados juntos para revisar su coherencia."
+    />
+    <div class="grid gap-4 lg:grid-cols-2">
+      <div class="nw-card">
+        <h3 class="text-lg font-semibold">Buttons</h3><p
+          class="mt-1 text-sm text-muted-foreground"
+        >
+          Primaria, secundaria y de texto.
+        </p><div class="mt-5 flex flex-wrap gap-3">
+          <a class="nw-button nw-button-primary" href="#page=button"
+            >Hablemos de tu proyecto →</a
+          ><a class="nw-button nw-button-secondary" href="#page=button"
+            >Ver proyectos</a
+          ><a class="nw-button nw-button-text" href="#page=button"
+            >Conocer más →</a>
+        </div>
+      </div>
+      <div class="nw-card">
+        <h3 class="text-lg font-semibold">Card</h3><p
+          class="mt-1 text-sm text-muted-foreground"
+        >
+          Contenido claro, sin decoración innecesaria.
+        </p><div class="mt-5 flex items-start gap-4">
+          <span class="rounded-lg bg-muted p-2"><Icon name="Website" /></span><p
+            class="text-sm leading-relaxed"
+          >
+            Sitios web rápidos, accesibles y pensados para convertir visitantes
+            en clientes.
+          </p>
+        </div>
+      </div>
+      <div class="nw-card">
+        <h3 class="text-lg font-semibold">Outline icons</h3><p
+          class="mt-1 text-sm text-muted-foreground"
+        >
+          Un solo peso visual y trazo sencillo.
+        </p><div class="mt-5 flex gap-3">
+          {
+            iconNames.slice(0, 4).map((name) => (
+              <span class="rounded-lg border border-border p-3">
+                <Icon name={name} />
+              </span>
+            ))
+          }
+        </div>
+      </div>
+      <div class="nw-card">
+        <h3 class="text-lg font-semibold">Navigation</h3><p
+          class="mt-1 text-sm text-muted-foreground"
+        >
+          Una estructura simple que deja hablar al contenido.
+        </p><p class="mt-5 text-sm leading-relaxed text-muted-foreground">
+          Marca · Enlaces claros · Un llamado a la acción. El menú móvil
+          conserva la misma jerarquía.
+        </p><a
+          class="nw-button nw-button-text mt-3"
+          href="#page=primary-navigation">Ver navegación →</a>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-5">
+    <Heading eyebrow="03 / In context" title="Navegación en uso." /><div
+      class="overflow-hidden rounded-2xl border border-border"
+    >
+      <PrimaryNavigation cta="Explorar" />
+    </div>
+  </div>
+</section>
+
+<section id="brand-logo" data-page hidden class="space-y-7">
+  <div class="rounded-2xl border border-border bg-white p-8">
+    <img
+      src={`${import.meta.env.BASE_URL}logo.svg`}
+      alt="Northweb Studio"
+      width="500"
+      height="150"
+      class="h-auto w-full max-w-[500px]"
+    />
+  </div>
+  <Heading
+    eyebrow="Brand / Logo"
+    title="El símbolo y el wordmark originales."
+    description="La versión entregada se muestra sobre blanco para mantener su lectura. El archivo suministrado no contiene una variante oscura ni un acento naranja renderizable; no se ha recreado."
+  />
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Dejar espacio libre generoso alrededor del logotipo.",
+      },
+      {
+        kind: "do",
+        text: "Usar el símbolo N solo cuando el contexto ya identifique la marca.",
+      },
+      {
+        kind: "dont",
+        text: "Estirar, rotar, añadir sombras o poner el logotipo a color sobre fondos ocupados.",
+      },
+    ]}
+  />
+</section>
+
+<section id="brand-colors" data-page hidden class="space-y-8">
+  <Heading
+    eyebrow="Colors / Brand"
+    title="Reconocible sin saturar."
+    description="Los seis colores del documento original. Los modos oscuros y algunos roles de interfaz se derivan de ellos."
+  />
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      brandColors.map(([name, color, description]) => (
+        <Swatch name={name} color={color} description={description} />
+      ))
+    }
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Mantener aproximadamente 60% de fondo neutro, 25% de carbón, 10% de naranja y 5% de verde.",
+      },
+      {
+        kind: "do",
+        text: "Reservar el naranja para CTA, enlaces y momentos importantes; el verde queda como acento secundario.",
+      },
+      {
+        kind: "dont",
+        text: "Usar degradados, neón o el verde como identidad dominante.",
+      },
+    ]}
+  />
+</section>
+
+<section id="semantic-colors" data-page hidden class="space-y-8">
+  <Heading
+    eyebrow="Colors / Semantic"
+    title="Roles para cada contexto."
+    description="Light toma los valores de la guía donde existen. Dark es un tema derivado, no una variante oficial entregada."
+  />
+  <div class="grid gap-6 lg:grid-cols-2">
+    {
+      [
+        { label: "Light / source-led", values: light },
+        { label: "Dark / derived", values: dark },
+      ].map((mode) => (
+        <div class="rounded-2xl border border-border bg-card p-6">
+          <h3 class="text-lg font-semibold">{mode.label}</h3>
+          <div class="mt-5 grid grid-cols-2 gap-5">
+            {roles.map((role) => (
+              <Swatch name={role} color={mode.values[role].$value} />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Mantener contraste suficiente en texto, controles y estados; no comunicar información solo con color.",
+      },
+      {
+        kind: "do",
+        text: "Usar anillos de foco visibles y accesibles en todos los temas.",
+      },
+    ]}
+  />
+</section>
+
+<section id="type-scale" data-page hidden class="space-y-10">
+  <Heading
+    eyebrow="Fonts"
+    title="Claridad + personalidad."
+    description="Inter hace el trabajo cotidiano; Merriweather aparece en momentos editoriales elegidos."
+  />
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="nw-card">
+      <p
+        class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+      >
+        UI / Inter
+      </p><p class="mt-3 text-3xl font-semibold">Aa Bb Cc 0123</p><p
+        class="mt-2 text-sm text-muted-foreground"
+      >
+        400 · 500 · 600 · 700
+      </p>
+    </div>
+    <div class="nw-card">
+      <p
+        class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+      >
+        Display / Merriweather
+      </p><p class="mt-3 font-serif text-3xl font-bold">Aa Bb Cc 0123</p><p
+        class="mt-2 text-sm text-muted-foreground"
+      >
+        400 · 700
+      </p>
+    </div>
+  </div>
+  <div class="space-y-5">
+    {
+      [
+        [
+          "Display",
+          "text-[44px] md:text-[72px]",
+          "1.08 / 1.05",
+          "700",
+          "Soluciones digitales",
+        ],
+        [
+          "H1",
+          "text-[40px] md:text-[56px]",
+          "1.1 / 1.08",
+          "700",
+          "Construimos lo útil.",
+        ],
+        [
+          "H2",
+          "text-[32px] md:text-[44px]",
+          "1.15 / 1.12",
+          "700",
+          "Más que un sitio web.",
+        ],
+        [
+          "H3",
+          "text-[26px] md:text-[32px]",
+          "1.2",
+          "600",
+          "Diseño con propósito.",
+        ],
+      ].map(([label, size, line, weight, sample], index) => (
+        <div class="border-b border-border pb-5">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            {label} · Mobile / desktop · Line {line} · Weight {weight}
+          </p>
+          <p
+            class:list={[
+              size,
+              index === 0 ? "font-serif" : "font-sans",
+              "font-bold leading-tight",
+            ]}
+          >
+            {sample}
+          </p>
+        </div>
+      ))
+    }
+    <p class="text-lg leading-[1.55] md:text-xl">
+      Body large — 18px mobile / 20px desktop, Inter 400.
+    </p>
+    <p>Body — 16px, Inter 400. Información directa, legible y útil.</p>
+    <p class="text-xs font-semibold uppercase tracking-[0.08em]">
+      Label — 12px / 1.4 · Inter 600
+    </p>
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Usar Inter para navegación, cuerpo, controles y datos técnicos.",
+      },
+      {
+        kind: "do",
+        text: "Usar Merriweather con moderación en titulares grandes o storytelling.",
+      },
+      {
+        kind: "dont",
+        text: "Usar Merriweather en párrafos largos o interfaces densas.",
+      },
+    ]}
+  />
+</section>
+
+<section id="layout-system" data-page hidden class="space-y-10">
+  <Heading
+    eyebrow="Layout"
+    title="Un ritmo de 4px."
+    description="Contenedor máximo de 1200px; padding horizontal de 24px en desktop y 20px en móvil."
+  />
+  <div class="nw-card">
+    <h3 class="text-lg font-semibold">Spacing scale</h3><div
+      class="mt-5 space-y-3"
+    >
+      {
+        sizes.map((size) => (
+          <div class="flex items-center gap-4">
+            <>
+              <span class="w-9 font-mono text-xs text-muted-foreground">
+                {size}
+              </span>
+              <span
+                class="h-3 rounded-sm bg-primary"
+                style={`width:${size}px`}
+              />
+            </>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="nw-card">
+      <h3 class="text-lg font-semibold">Responsive grid</h3><p
+        class="mt-2 text-sm text-muted-foreground"
+      >
+        12 columnas en desktop, 8 en tablet, 4 en móvil. Gutters de 24px / 16px.
+      </p><div
+        class="mt-5 grid grid-cols-4 gap-2 md:grid-cols-8 lg:grid-cols-12"
+      >
+        {sizes.slice(0, 12).map(() => <div class="h-12 rounded-sm bg-muted" />)}
+      </div>
+    </div>
+    <div class="nw-card">
+      <h3 class="text-lg font-semibold">Radius & elevation</h3><div
+        class="mt-5 flex gap-3"
+      >
+        {
+          [
+            ["6px", "rounded-[6px]"],
+            ["10px", "rounded-[10px]"],
+            ["16px", "rounded-2xl"],
+          ].map(([label, radius]) => (
+            <span
+              class:list={[
+                "flex h-20 w-20 items-end border border-input bg-muted p-3 text-xs",
+                radius,
+              ]}
+            >
+              {label}
+            </span>
+          ))
+        }
+      </div><p class="mt-5 text-sm text-muted-foreground">
+        Preferir bordes y contraste antes que sombras fuertes.
+      </p>
+    </div>
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Usar la escala de 4px y mantener espacios amplios para jerarquía visual.",
+      },
+      {
+        kind: "do",
+        text: "Mantener radios refinados: 8px en botones y 16px en tarjetas.",
+      },
+      {
+        kind: "dont",
+        text: "Hacer todos los controles tipo píldora o depender de sombras pesadas.",
+      },
+    ]}
+  />
+</section>
+
+<section id="button" data-page hidden class="space-y-8">
+  <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+    Inter 600 a 15px, 48px de alto, padding horizontal de 20px y radio de 8px.
+    El naranja mantiene su valor original; la etiqueta usa tinta oscura para
+    cumplir el contraste AA.
+  </p>
+  <div class="space-y-6 rounded-2xl border border-border bg-card p-7">
+    <div>
+      <p class="mb-3 text-xs font-semibold uppercase text-muted-foreground">
+        Primary
+      </p><button
+        id="demo-button"
+        type="button"
+        class="nw-button nw-button-primary">Hablemos de tu proyecto →</button>
+    </div>
+    <div>
+      <p class="mb-3 text-xs font-semibold uppercase text-muted-foreground">
+        Secondary
+      </p><a href="#page=card" class="nw-button nw-button-secondary"
+        >Ver tarjetas</a>
+    </div>
+    <div>
+      <p class="mb-3 text-xs font-semibold uppercase text-muted-foreground">
+        Text
+      </p><a href="#page=brand-colors" class="nw-button nw-button-text"
+        >Ver colores →</a>
+    </div>
+    <div>
+      <p class="mb-3 text-xs font-semibold uppercase text-muted-foreground">
+        Disabled
+      </p><button disabled class="nw-button nw-button-primary"
+        >Acción no disponible</button
+      >
+      <button disabled class="nw-button nw-button-secondary"
+        >Secundaria no disponible</button>
+    </div>
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Priorizar una acción principal por contexto y mantener el foco visible.",
+      },
+      {
+        kind: "do",
+        text: "Usar botones de texto con flecha para acciones de menor peso.",
+      },
+      {
+        kind: "dont",
+        text: "Usar texto blanco pequeño sobre el naranja original: no alcanza AA.",
+      },
+    ]}
+  />
+</section>
+
+<section id="icon" data-page hidden class="space-y-8">
+  <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+    Iconos outline: trazos de 1.75px, uniones redondeadas y peso consistente.
+    Los iconos informativos reciben una etiqueta accesible.
+  </p>
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+    {
+      iconNames.map((name) => (
+        <div class="flex min-h-28 flex-col justify-between rounded-2xl border border-border bg-card p-5">
+          <>
+            <span class="text-primary">
+              <Icon name={name} />
+            </span>
+            <span class="text-sm font-semibold">{name}</span>
+          </>
+        </div>
+      ))
+    }
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Mantener detalles mínimos, trazo uniforme y un solo lenguaje de iconos.",
+      },
+      {
+        kind: "do",
+        text: "Etiquetar iconos que comunican información; ocultar los puramente decorativos.",
+      },
+      {
+        kind: "dont",
+        text: "Mezclar estilos outline con iconos sólidos de otra familia.",
+      },
+    ]}
+  />
+</section>
+
+<section id="card" data-page hidden class="space-y-8">
+  <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+    Superficies limpias: fondo blanco, borde suave, radio de 16px y padding de
+    28px. La elevación sólo aparece cuando la tarjeta representa una acción.
+  </p>
+  <div class="grid gap-5 lg:grid-cols-2">
+    <div class="nw-card">
+      <span class="text-primary"><Icon name="Website" /></span><h3
+        class="mt-4 text-lg font-semibold"
+      >
+        Websites
+      </h3><p class="mt-2 text-sm text-muted-foreground">
+        Sitios web rápidos, accesibles y pensados para convertir visitantes en
+        clientes.
+      </p><p class="mt-5 text-sm">
+        Diseño, desarrollo, rendimiento y una experiencia que funciona para
+        todos.
+      </p><a href="#page=content-voice" class="nw-button nw-button-text mt-4"
+        >Conocer el enfoque →</a>
+    </div>
+    <a href="#page=overview" class="nw-card nw-card-interactive block"
+      ><span class="text-primary"><Icon name="E-commerce" /></span><h3
+        class="mt-4 text-lg font-semibold"
+      >
+        E-commerce
+      </h3><p class="mt-2 text-sm text-muted-foreground">
+        Experiencias de compra simples, rápidas y conectadas con las
+        herramientas del negocio.
+      </p><p
+        class="mt-5 text-sm font-semibold text-[#B8420C] dark:text-[#FFB389]"
+      >
+        Explorar el sistema →
+      </p></a
+    >
+  </div>
+  <Guidelines
+    items={[
+      { kind: "do", text: "Usar aire, borde y jerarquía antes que adornos." },
+      {
+        kind: "do",
+        text: "Aplicar elevación ligera sólo a tarjetas interactivas; mantener su enlace accesible por teclado.",
+      },
+      {
+        kind: "dont",
+        text: "Añadir sombras pesadas o decoración excesiva a todas las tarjetas.",
+      },
+    ]}
+  />
+</section>
+
+<section id="primary-navigation" data-page hidden class="space-y-8">
+  <p class="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+    En un sitio Northweb, los enlaces principales son Services, Projects, About,
+    Insights y Contact, con un único CTA “Hablemos”. En esta demostración los
+    enlaces recorren el propio sistema de diseño.
+  </p>
+  <div class="overflow-hidden rounded-2xl border border-border">
+    <PrimaryNavigation />
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Mantener pocos enlaces y un solo llamado a la acción principal.",
+      },
+      {
+        kind: "do",
+        text: "En móvil, mostrar un botón de menú y una navegación desplegable accesible.",
+      },
+      {
+        kind: "dont",
+        text: "Complicar la navegación con efectos o demasiados niveles.",
+      },
+    ]}
+  />
+</section>
+
+<section id="content-voice" data-page hidden class="space-y-8">
+  <Heading
+    eyebrow="Content"
+    title="Decir lo que hacemos."
+    description="La confianza viene de explicar bien el trabajo, no de proclamarse superior."
+  />
+  <div class="nw-card">
+    <p
+      class="text-xs font-semibold uppercase tracking-[0.08em] text-[#B8420C] dark:text-[#FFB389]"
+    >
+      DISEÑO Y DESARROLLO DIGITAL
+    </p><h3 class="mt-4 font-serif text-3xl font-bold">
+      Soluciones digitales para hacer crecer tu negocio.
+    </h3><p class="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+      Diseñamos y desarrollamos sitios web, e-commerce y sistemas digitales que
+      ayudan a las empresas a trabajar mejor y crecer.
+    </p><p class="mt-4 text-sm font-semibold">Web · E-commerce · CRM</p>
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Escribir claro, directo, humano y experto. Preferir “Diseñamos”, “Desarrollamos” y “Construimos”.",
+      },
+      {
+        kind: "do",
+        text: "Demostrar experiencia con resultados y explicaciones, no con superlativos.",
+      },
+      {
+        kind: "dont",
+        text: "Usar “disruptivo”, “soluciones 360°”, “sinergias” o “somos líderes”.",
+      },
+    ]}
+  />
+</section>
+
+<section id="motion-guidelines" data-page hidden class="space-y-8">
+  <Heading
+    eyebrow="Motion"
+    title="Movimiento con propósito."
+    description="Los cambios de estado apoyan la comprensión sin distraer del contenido."
+  />
+  <div class="nw-card nw-card-interactive">
+    <h3 class="text-lg font-semibold">Hover para descubrir</h3><p
+      class="mt-2 text-sm text-muted-foreground"
+    >
+      Elevación discreta, borde sutil y 180–220ms ease-out.
+    </p><p class="mt-5 text-sm">
+      Pasa el cursor por esta tarjeta para ver el tratamiento interactivo.
+    </p>
+  </div>
+  <Guidelines
+    items={[
+      {
+        kind: "do",
+        text: "Usar transiciones sutiles de 180–300ms y respetar la preferencia de movimiento reducido.",
+      },
+      {
+        kind: "dont",
+        text: "Usar parallax excesivo, rebotes constantes o efectos de cursor distractores.",
+      },
+    ]}
+  />
+</section>
+
+<section id="brand-guide" data-page hidden class="space-y-8">
+  <Heading
+    eyebrow="Document"
+    title="Guía de marca completa."
+    description="La especificación original de Northweb Studio, conservada íntegra."
+  />
+  <article class="brand-guide nw-card" set:html={guideHtml} />
+</section>
