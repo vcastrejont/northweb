@@ -12,6 +12,8 @@ const projects = [
     title: 'SIEM.care',
     description: 'SIEM ofrece medicina del trabajo, evaluaciones médicas laborales, atención en sitio, estudios periódicos y asesoría en cumplimiento normativo para empresas.',
     image: '/images/siem-homepage.webp',
+    imageWidth: 1626,
+    imageHeight: 1208,
     imageAlt: 'Página de inicio de SIEM.care, con información sobre salud ocupacional para empresas.',
     imageCaption: 'Vista de la página de inicio de SIEM.care.',
     detailsLabel: 'Conocer SIEM',
@@ -20,17 +22,19 @@ const projects = [
   },
   {
     number: '02',
-    category: 'E-commerce',
+    category: 'Mantenimiento integral',
     variant: 'shop',
     featured: false,
-    title: 'Proyecto 02',
-    description: 'Espacio reservado para una tienda en línea con catálogo simple y compra directa.',
-    image: undefined,
-    imageAlt: undefined,
-    imageCaption: 'Imagen conceptual, no corresponde a un trabajo real.',
-    detailsLabel: 'Ver proyecto',
-    details: 'Este proyecto es un marcador de posición. El caso de estudio completo se publicará cuando esté disponible.',
-    href: undefined,
+    title: 'Lidex',
+    description: 'Lidex ofrece servicios de mantenimiento para hogares y negocios de Hermosillo, como fumigación, jardinería y cuidado de albercas.',
+    image: '/images/lidex-homepage.webp',
+    imageWidth: 1200,
+    imageHeight: 675,
+    imageAlt: 'Página de inicio de Lidex.mx con servicios de mantenimiento y fotografía de una vivienda.',
+    imageCaption: 'Miniatura de la página de inicio de lidex.mx.',
+    detailsLabel: 'Conocer Lidex',
+    details: 'Su catálogo también incluye pintura, reparaciones menores y mantenimiento preventivo general. El sitio permite solicitar una cotización.',
+    href: 'https://lidex.mx/',
   },
   {
     number: '03',
@@ -40,6 +44,8 @@ const projects = [
     title: 'Proyecto 03',
     description: 'Espacio reservado para una herramienta a la medida que ordena procesos internos.',
     image: undefined,
+    imageWidth: undefined,
+    imageHeight: undefined,
     imageAlt: undefined,
     imageCaption: 'Imagen conceptual, no corresponde a un trabajo real.',
     detailsLabel: 'Ver proyecto',
@@ -68,8 +74,8 @@ const projects = [
             <img
               src={p.image}
               alt={p.imageAlt ?? ''}
-              width="1626"
-              height="1208"
+              width={p.imageWidth}
+              height={p.imageHeight}
               loading="lazy"
               decoding="async"
               class:list={['w-full rounded-md border border-charcoal/10 object-cover object-top', p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']}
