@@ -6,7 +6,10 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={['relative isolate min-h-[330px] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 shadow-sm sm:min-h-[430px] lg:min-h-[510px]', className]} aria-hidden="true">
+<div
+  class:list={['relative isolate min-h-[330px] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 shadow-sm sm:min-h-[430px] lg:min-h-[510px]', className]}
+  aria-hidden="true"
+>
   <img
     src="/images/northweb-hero-ambient.png"
     alt=""
