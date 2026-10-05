@@ -137,12 +137,42 @@ html {
 
 .nw-header {
   box-shadow: 0 0 0 rgba(47, 62, 70, 0);
-  transition: box-shadow 250ms ease-out;
+  background-color: var(--nw-color-white);
+  transition: box-shadow 250ms ease-out, background-color 250ms ease-out;
   animation: nw-header-in 400ms ease-out both;
 }
 
 .nw-header.is-scrolled {
   box-shadow: var(--nw-shadow-sm);
+}
+
+.nw-header-inner {
+  transition: padding 250ms ease-out, min-height 250ms ease-out;
+}
+
+.nw-header.is-scrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .nw-header.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
+.nw-header.is-scrolled .nw-header-inner {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .nw-header.is-scrolled .nw-header-inner {
+    min-height: 72px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }
 
 @keyframes nw-header-in {

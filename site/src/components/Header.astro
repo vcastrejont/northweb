@@ -13,8 +13,8 @@ const navigation = [
 ];
 ---
 
-<header class="nw-header sticky top-0 z-50 border-b border-gray-100 bg-white" data-header>
-  <Container class="flex flex-wrap items-center gap-x-5 py-4 md:min-h-[88px] md:flex-nowrap md:py-5">
+<header class="nw-header sticky top-0 z-50 border-b border-gray-100" data-header>
+  <Container class="nw-header-inner flex flex-wrap items-center gap-x-5 py-4 md:min-h-[88px] md:flex-nowrap md:py-5">
     <Logo size="header" />
 
     <button
@@ -28,7 +28,7 @@ const navigation = [
       <Icon path="M4 6h16M4 12h16M4 18h16" size={24} />
     </button>
 
-    <nav id="primary-navigation" class="absolute inset-x-0 top-full hidden max-h-[calc(100dvh-80px)] w-full overflow-y-auto border-b border-gray-100 bg-white px-5 pt-4 pb-5 md:static md:ml-auto md:flex md:max-h-none md:w-auto md:items-center md:gap-8 md:overflow-visible md:border-0 md:p-0" aria-label="Navegación principal" data-navigation>
+    <nav id="primary-navigation" class="absolute inset-x-0 top-full hidden max-h-[calc(100dvh-80px)] w-full overflow-y-auto border-b border-gray-100 bg-white px-5 pt-4 pb-5 md:static md:bg-transparent md:ml-auto md:flex md:max-h-none md:w-auto md:items-center md:gap-8 md:overflow-visible md:border-0 md:p-0" aria-label="Navegación principal" data-navigation>
       <ul class="flex flex-col border-t border-gray-100 py-3 md:flex-row md:items-center md:gap-8 md:border-0 md:p-0">
         {navigation.map(({ label, href }) => (
           <li>
@@ -85,7 +85,12 @@ const navigation = [
   });
   desktop.addEventListener('change', () => setOpen(false));
 
-  const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  // Hysteresis: separate on/off thresholds so the shrinking header cannot oscillate.
+  const update = () => {
+    const y = window.scrollY;
+    if (y > 32) header?.classList.add('is-scrolled');
+    else if (y < 8) header?.classList.remove('is-scrolled');
+  };
   update();
   window.addEventListener('scroll', update, { passive: true });
 </script>
