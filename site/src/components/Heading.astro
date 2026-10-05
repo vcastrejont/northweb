@@ -4,9 +4,18 @@ interface Props {
   display?: boolean;
   font?: 'sans' | 'display';
   class?: string;
+  'data-reveal'?: string;
+  'data-reveal-order'?: string;
 }
 
-const { level = 2, display = false, font = 'sans', class: className } = Astro.props;
+const {
+  level = 2,
+  display = false,
+  font = 'sans',
+  class: className,
+  'data-reveal': reveal,
+  'data-reveal-order': revealOrder,
+} = Astro.props;
 const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4';
 const sizes = {
   1: 'text-[40px] leading-[1.1] md:text-[56px] md:leading-[1.08]',
@@ -17,6 +26,10 @@ const sizes = {
 const displaySize = 'text-[44px] leading-[1.08] md:text-[72px] md:leading-[1.05]';
 ---
 
-<Tag class:list={[display || font === 'display' ? 'font-display' : 'font-sans', 'font-bold text-charcoal', display ? displaySize : sizes[level], className]}>
+<Tag
+  data-reveal={reveal}
+  data-reveal-order={revealOrder}
+  class:list={[display || font === 'display' ? 'font-display' : 'font-sans', 'font-bold text-charcoal', display ? displaySize : sizes[level], className]}
+>
   <slot />
 </Tag>

@@ -2,11 +2,18 @@
 interface Props {
   as?: 'article' | 'div' | 'li';
   class?: string;
+  'data-reveal'?: boolean | string;
+  'data-reveal-item'?: number | string;
 }
 
-const { as: Tag = 'article', class: className } = Astro.props;
+const {
+  as: Tag = 'article',
+  class: className,
+  'data-reveal': reveal,
+  'data-reveal-item': revealItem,
+} = Astro.props;
 ---
 
-<Tag class:list={['rounded-lg border border-gray-100 bg-white p-7 shadow-sm', className]}>
+<Tag data-reveal={reveal} data-reveal-item={revealItem} class:list={['rounded-lg border border-gray-100 bg-white p-7 shadow-sm', className]}>
   <slot />
 </Tag>
