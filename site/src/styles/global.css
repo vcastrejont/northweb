@@ -46,6 +46,7 @@ html.nw-motion-ready [data-reveal] {
 html.nw-motion-ready [data-reveal]:not(.is-visible) {
   opacity: 0;
   transform: translateY(12px);
+  transition: none;
 }
 
 html.nw-motion-ready [data-reveal="hero-background"] {
@@ -62,6 +63,7 @@ html.nw-motion-ready [data-reveal="hero-background"]:not(.is-visible) {
 html.nw-motion-ready [data-reveal]:focus-within {
   opacity: 1;
   transform: none;
+  transition: none;
 }
 
 html.nw-motion-ready [data-reveal-order="1"] {
@@ -105,6 +107,13 @@ html.nw-motion-ready [data-reveal][data-reveal-item="5"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html.nw-motion-ready [data-reveal],
+  html.nw-motion-ready [data-reveal]:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   *,
   *::before,
   *::after {
