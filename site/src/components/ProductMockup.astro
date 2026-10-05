@@ -6,53 +6,15 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={['relative isolate min-h-[330px] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 p-5 shadow-sm sm:min-h-[430px] sm:p-8 lg:min-h-[510px]', className]} aria-label="Representación conceptual de una experiencia web adaptable en computadora y móvil" role="img">
-  <div aria-hidden="true" class="absolute -right-16 -top-16 h-52 w-52 rounded-full border-[32px] border-secondary/15"></div>
-  <div aria-hidden="true" class="absolute bottom-10 left-8 h-20 w-20 rounded-full border border-primary/25"></div>
-
-  <div aria-hidden="true" class="absolute left-[5%] top-[11%] w-[80%]">
-    <div class="rounded-[18px] border-[10px] border-charcoal bg-charcoal p-1.5 shadow-lg sm:border-[14px] sm:p-2">
-      <div class="overflow-hidden rounded-[7px] bg-white">
-        <div class="flex h-7 items-center justify-between border-b border-gray-100 px-3 sm:h-9 sm:px-4">
-          <div class="flex gap-1.5">
-            <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-            <span class="h-1.5 w-1.5 rounded-full bg-gray-100"></span>
-            <span class="h-1.5 w-1.5 rounded-full bg-gray-100"></span>
-          </div>
-          <div class="h-1.5 w-16 rounded-sm bg-charcoal/15 sm:w-24"></div>
-        </div>
-        <div class="grid grid-cols-[1.08fr_.92fr] gap-4 p-4 sm:gap-6 sm:p-6">
-          <div class="space-y-3 sm:space-y-4">
-            <div class="h-2 w-16 rounded-sm bg-primary/80 sm:w-20"></div>
-            <div class="h-6 w-full rounded-sm bg-charcoal/90 sm:h-9"></div>
-            <div class="h-6 w-4/5 rounded-sm bg-charcoal/90 sm:h-9"></div>
-            <div class="h-2 w-full rounded-sm bg-slate/25"></div>
-            <div class="h-2 w-4/5 rounded-sm bg-slate/25"></div>
-            <div class="h-6 w-20 rounded-md bg-primary sm:h-8 sm:w-28"></div>
-          </div>
-          <div class="rounded-md bg-charcoal p-3 sm:p-4">
-            <div class="flex h-full min-h-24 items-end rounded-sm border border-white/15 bg-white/10 p-3 sm:min-h-36">
-              <div class="grid w-full grid-cols-3 items-end gap-1.5">
-                <span class="h-8 rounded-sm bg-primary/75 sm:h-14"></span>
-                <span class="h-14 rounded-sm bg-secondary/60 sm:h-24"></span>
-                <span class="h-10 rounded-sm bg-white/50 sm:h-[72px]"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto h-3 w-[92%] rounded-b-[80%] bg-charcoal shadow-md sm:h-4"></div>
-  </div>
-
-  <div aria-hidden="true" class="absolute bottom-[6%] right-[5%] w-[26%] rounded-[22px] border-[5px] border-charcoal bg-white p-2 shadow-lg sm:border-[6px] sm:p-2.5">
-    <div class="mx-auto h-1.5 w-10 rounded-full bg-charcoal/20"></div>
-    <div class="mt-3 space-y-2">
-      <div class="h-9 rounded-sm bg-charcoal sm:h-12"></div>
-      <div class="h-2 w-4/5 rounded-sm bg-primary/75"></div>
-      <div class="h-1.5 w-full rounded-sm bg-slate/25"></div>
-      <div class="h-1.5 w-2/3 rounded-sm bg-slate/25"></div>
-      <div class="h-5 w-full rounded-md bg-primary sm:h-6"></div>
-    </div>
-  </div>
+<div class:list={['relative isolate min-h-[330px] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 shadow-sm sm:min-h-[430px] lg:min-h-[510px]', className]} aria-hidden="true">
+  <img
+    src="/images/northweb-hero-ambient.png"
+    alt=""
+    width="1024"
+    height="1024"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover object-center"
+  />
 </div>
