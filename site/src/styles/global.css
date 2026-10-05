@@ -123,3 +123,52 @@ html.nw-motion-ready [data-reveal][data-reveal-item="5"] {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Sticky header */
+html {
+  scroll-padding-top: 80px;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 96px;
+  }
+}
+
+.nw-header {
+  box-shadow: 0 0 0 rgba(47, 62, 70, 0);
+  transition: box-shadow 250ms ease-out;
+  animation: nw-header-in 400ms ease-out both;
+}
+
+.nw-header.is-scrolled {
+  box-shadow: var(--nw-shadow-sm);
+}
+
+@keyframes nw-header-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nw-menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nw-menu-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+@media (max-width: 767px) {
+  [data-navigation].is-open { animation: nw-menu-in 220ms ease-out both; }
+  [data-navigation].is-closing { animation: nw-menu-out 160ms ease-in both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nw-header,
+  [data-navigation].is-open,
+  [data-navigation].is-closing {
+    animation: none !important;
+  }
+}

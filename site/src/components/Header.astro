@@ -13,7 +13,7 @@ const navigation = [
 ];
 ---
 
-<header class="border-b border-gray-100 bg-white">
+<header class="nw-header sticky top-0 z-50 border-b border-gray-100 bg-white" data-header>
   <Container class="flex flex-wrap items-center gap-x-5 py-4 md:min-h-[88px] md:flex-nowrap md:py-5">
     <Logo size="header" />
 
@@ -28,7 +28,7 @@ const navigation = [
       <Icon path="M4 6h16M4 12h16M4 18h16" size={24} />
     </button>
 
-    <nav id="primary-navigation" class="hidden w-full pt-4 md:ml-auto md:flex md:w-auto md:items-center md:gap-8 md:pt-0" aria-label="Navegación principal" data-navigation>
+    <nav id="primary-navigation" class="absolute inset-x-0 top-full hidden max-h-[calc(100dvh-80px)] w-full overflow-y-auto border-b border-gray-100 bg-white px-5 pt-4 pb-5 md:static md:ml-auto md:flex md:max-h-none md:w-auto md:items-center md:gap-8 md:overflow-visible md:border-0 md:p-0" aria-label="Navegación principal" data-navigation>
       <ul class="flex flex-col border-t border-gray-100 py-3 md:flex-row md:items-center md:gap-8 md:border-0 md:p-0">
         {navigation.map(({ label, href }) => (
           <li>
@@ -42,13 +42,50 @@ const navigation = [
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
   const button = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const navigation = document.querySelector<HTMLElement>('[data-navigation]');
+  const desktop = window.matchMedia('(min-width: 768px)');
+  let closeTimer: ReturnType<typeof setTimeout> | undefined;
 
-  button?.addEventListener('click', () => {
-    const isOpen = button.getAttribute('aria-expanded') === 'true';
-    button.setAttribute('aria-expanded', String(!isOpen));
-    button.setAttribute('aria-label', isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
-    navigation?.classList.toggle('hidden', isOpen);
+  const setOpen = (open: boolean, restoreFocus = false) => {
+    if (!button || !navigation) return;
+    clearTimeout(closeTimer);
+    navigation.classList.remove('is-closing');
+    navigation.inert = !open && !desktop.matches;
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+    if (open) {
+      navigation.classList.remove('hidden', 'is-closing');
+      navigation.classList.add('is-open');
+    } else {
+      navigation.classList.remove('is-open');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || desktop.matches) {
+        navigation.classList.add('hidden');
+      } else {
+        navigation.classList.add('is-closing');
+        closeTimer = setTimeout(() => {
+          navigation.classList.remove('is-closing');
+          navigation.classList.add('hidden');
+        }, 180);
+      }
+    }
+    if (restoreFocus) button.focus();
+  };
+
+  const isOpen = () => button?.getAttribute('aria-expanded') === 'true';
+
+  button?.addEventListener('click', () => setOpen(!isOpen()));
+  navigation?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a') && isOpen()) setOpen(false);
   });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen()) setOpen(false, true);
+  });
+  desktop.addEventListener('change', () => setOpen(false));
+
+  const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 </script>
