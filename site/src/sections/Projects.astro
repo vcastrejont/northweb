@@ -4,9 +4,48 @@ import Heading from '../components/Heading.astro';
 import Section from '../components/Section.astro';
 
 const projects = [
-  { number: '01', category: 'Sitio web', variant: 'site', featured: true, title: 'Proyecto 01', description: 'Espacio reservado para un sitio web con estructura clara, lectura cómoda y una presencia visual cuidada.' },
-  { number: '02', category: 'E-commerce', variant: 'shop', featured: false, title: 'Proyecto 02', description: 'Espacio reservado para una tienda en línea con catálogo simple y compra directa.' },
-  { number: '03', category: 'Sistema / Aplicación web', variant: 'app', featured: false, title: 'Proyecto 03', description: 'Espacio reservado para una herramienta a la medida que ordena procesos internos.' },
+  {
+    number: '01',
+    category: 'Salud ocupacional',
+    variant: 'site',
+    featured: true,
+    title: 'SIEM.care',
+    description: 'SIEM ofrece medicina del trabajo, evaluaciones médicas laborales, atención en sitio, estudios periódicos y asesoría en cumplimiento normativo para empresas.',
+    image: '/images/siem-homepage.webp',
+    imageAlt: 'Página de inicio de SIEM.care, con información sobre salud ocupacional para empresas.',
+    imageCaption: 'Vista de la página de inicio de SIEM.care.',
+    detailsLabel: 'Conocer SIEM',
+    details: 'SIEM (Salud Industrial y Empresarial Mexicana) también brinda unidades médicas móviles y capacitación en seguridad industrial con registro DC5 y constancias DC3.',
+    href: 'https://www.siem.care/',
+  },
+  {
+    number: '02',
+    category: 'E-commerce',
+    variant: 'shop',
+    featured: false,
+    title: 'Proyecto 02',
+    description: 'Espacio reservado para una tienda en línea con catálogo simple y compra directa.',
+    image: undefined,
+    imageAlt: undefined,
+    imageCaption: 'Imagen conceptual, no corresponde a un trabajo real.',
+    detailsLabel: 'Ver proyecto',
+    details: 'Este proyecto es un marcador de posición. El caso de estudio completo se publicará cuando esté disponible.',
+    href: undefined,
+  },
+  {
+    number: '03',
+    category: 'Sistema / Aplicación web',
+    variant: 'app',
+    featured: false,
+    title: 'Proyecto 03',
+    description: 'Espacio reservado para una herramienta a la medida que ordena procesos internos.',
+    image: undefined,
+    imageAlt: undefined,
+    imageCaption: 'Imagen conceptual, no corresponde a un trabajo real.',
+    detailsLabel: 'Ver proyecto',
+    details: 'Este proyecto es un marcador de posición. El caso de estudio completo se publicará cuando esté disponible.',
+    href: undefined,
+  },
 ] as const;
 ---
 
@@ -25,8 +64,20 @@ const projects = [
     {projects.map((p, index) => (
       <article data-reveal data-reveal-item={index} class:list={['flex flex-col', p.featured && 'md:col-span-2 md:grid md:grid-cols-12 md:gap-x-6']}>
         <div class:list={[p.featured && 'md:col-span-8']}>
-          <ConceptVisual variant={p.variant} class:list={[p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']} />
-          <p class="mt-2 text-xs text-slate">Imagen conceptual, no corresponde a un trabajo real.</p>
+          {p.image ? (
+            <img
+              src={p.image}
+              alt={p.imageAlt ?? ''}
+              width="1626"
+              height="1208"
+              loading="lazy"
+              decoding="async"
+              class:list={['w-full rounded-md border border-charcoal/10 object-cover object-top', p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']}
+            />
+          ) : (
+            <ConceptVisual variant={p.variant} class:list={[p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']} />
+          )}
+          <p class="mt-2 text-xs text-slate">{p.imageCaption}</p>
         </div>
         <div class:list={['mt-6 flex flex-col', p.featured && 'md:col-span-4 md:mt-0 md:justify-end']}>
           <div class="flex items-center gap-3 border-t border-charcoal pt-4 text-xs font-semibold tracking-[0.08em] text-charcoal">
@@ -38,11 +89,21 @@ const projects = [
           <p class="mt-3 max-w-sm text-sm leading-relaxed text-slate">{p.description}</p>
           <details class="group mt-4">
             <summary class="inline-flex min-h-11 cursor-pointer list-none items-center text-sm font-semibold text-charcoal underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary-hover [&::-webkit-details-marker]:hidden">
-              <span>Ver proyecto <span class="sr-only">{p.number}</span></span><span aria-hidden="true" class="ml-2 text-primary">→</span>
+              <span>{p.detailsLabel} <span class="sr-only">{p.number}</span></span><span aria-hidden="true" class="ml-2 text-primary">→</span>
             </summary>
             <p class="mt-2 max-w-sm border-l-2 border-primary pl-4 text-sm leading-relaxed text-charcoal">
-              Este proyecto es un marcador de posición. El caso de estudio completo se publicará cuando esté disponible.
+              {p.details}
             </p>
+            {p.href && (
+              <a
+                class="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-primary underline decoration-primary decoration-2 underline-offset-4 transition-colors duration-200 hover:text-primary-hover"
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visitar sitio oficial <span class="sr-only">(abre una pestaña nueva)</span><span aria-hidden="true" class="ml-2">↗</span>
+              </a>
+            )}
           </details>
         </div>
       </article>
