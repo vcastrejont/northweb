@@ -14,7 +14,7 @@ type Project = {
   imageWidth?: number;
   imageHeight?: number;
   imageAlt?: string;
-  imageCaption: string;
+  imageCaption?: string;
   detailsLabel: string;
   details: string;
   href?: string;
@@ -29,10 +29,9 @@ const projects: Project[] = [
     title: 'SIEM.care',
     description: 'SIEM ofrece medicina del trabajo, evaluaciones médicas laborales, atención en sitio, estudios periódicos y asesoría en cumplimiento normativo para empresas.',
     image: '/images/siem-homepage.webp',
-    imageWidth: 1626,
-    imageHeight: 1208,
-    imageAlt: 'Página de inicio de SIEM.care, con información sobre salud ocupacional para empresas.',
-    imageCaption: 'Vista de la página de inicio de SIEM.care.',
+    imageWidth: 1543,
+    imageHeight: 1143,
+    imageAlt: 'Página de SIEM.care con información sobre salud ocupacional y atención médica para empresas.',
     detailsLabel: 'Conocer SIEM',
     details: 'SIEM (Salud Industrial y Empresarial Mexicana) también brinda unidades médicas móviles y capacitación en seguridad industrial con registro DC5 y constancias DC3.',
     href: 'https://www.siem.care/',
@@ -95,14 +94,14 @@ const projects: Project[] = [
               height={p.imageHeight}
               loading="lazy"
               decoding="async"
-              class:list={['w-full rounded-md border border-charcoal/10 object-cover object-top', p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']}
+              class:list={['w-full rounded-md border border-charcoal/10', p.featured ? 'h-auto object-contain' : 'h-56 md:h-72 object-cover object-top']}
             />
           ) : (
             <ConceptVisual variant={p.variant} class:list={[p.featured ? 'h-64 md:h-[420px]' : 'h-56 md:h-72']} />
           )}
-          <p class="mt-2 text-xs text-slate">{p.imageCaption}</p>
+          {p.imageCaption && <p class="mt-2 text-xs text-slate">{p.imageCaption}</p>}
         </div>
-        <div class:list={['mt-6 flex flex-col', p.featured && 'md:col-span-4 md:mt-0 md:justify-end']}>
+        <div class:list={['mt-6 flex flex-col', p.featured && 'md:col-span-4 md:mt-0 md:justify-start']}>
           <div class="flex items-center gap-3 border-t border-charcoal pt-4 text-xs font-semibold tracking-[0.08em] text-charcoal">
             <span class="tabular-nums">{p.number}</span>
             <span class="text-slate" aria-hidden="true">/</span>
