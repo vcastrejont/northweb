@@ -4,34 +4,36 @@ import Heading from '../components/Heading.astro';
 import Section from '../components/Section.astro';
 ---
 
-<Section class="relative isolate overflow-hidden pt-12 pb-8 md:pt-16 md:pb-12 xl:pt-20 xl:pb-14">
-  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-    <img
-      src="/images/northweb-hero-background.webp"
-      alt=""
-      width="1672"
-      height="940"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      class="h-full w-full object-cover object-[10%_center] md:object-center"
-    />
-    <div class="absolute inset-0 bg-gradient-to-r from-white/75 via-white/40 to-transparent"></div>
-  </div>
-  <div class="relative grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-    <div class="lg:col-span-6">
-      <p data-reveal="hero" data-reveal-order="0" class="text-xs font-semibold tracking-[0.08em] text-primary">DISEÑO Y DESARROLLO DIGITAL</p>
-      <Heading level={1} font="display" class="mt-5 max-w-[690px]" data-reveal="hero" data-reveal-order="1">
-        Soluciones digitales<br class="hidden lg:block" />
-        para <span class="text-primary">hacer crecer</span><br class="hidden lg:block" />
-        tu negocio.
-      </Heading>
-      <p data-reveal="hero" data-reveal-order="2" class="mt-6 max-w-xl text-lg leading-[1.55] text-slate md:text-xl">
-        Diseñamos y desarrollamos sitios web, e-commerce y sistemas digitales que ayudan a las empresas a trabajar mejor y crecer.
-      </p>
-      <div data-reveal="hero" data-reveal-order="3" class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
-        <Button href="#contacto"><span>Hablemos de tu proyecto</span><span aria-hidden="true" class="ml-2">→</span></Button>
-        <Button href="#proyectos" variant="text"><span>Ver proyectos</span><span aria-hidden="true" class="ml-2">→</span></Button>
+<Section class="overflow-hidden pt-12 pb-8 md:pt-16 md:pb-12 xl:pt-20 xl:pb-14">
+  <div class="relative isolate">
+    <div class="pointer-events-none absolute inset-x-0 -top-12 -bottom-8 -z-10 md:-top-16 md:-bottom-12 xl:-top-20 xl:-bottom-14" aria-hidden="true">
+      <img
+        src="/images/northweb-hero-background.webp"
+        alt=""
+        width="1672"
+        height="940"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="h-full w-full object-cover object-[10%_center] md:object-center"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/75 via-white/40 to-transparent"></div>
+    </div>
+    <div class="relative grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-6">
+        <p data-reveal="hero" data-reveal-order="0" class="text-xs font-semibold tracking-[0.08em] text-primary">DISEÑO Y DESARROLLO DIGITAL</p>
+        <Heading level={1} font="display" class="mt-5 max-w-[690px]" data-reveal="hero" data-reveal-order="1">
+          Soluciones digitales<br class="hidden lg:block" />
+          para <span class="text-primary">hacer crecer</span><br class="hidden lg:block" />
+          tu negocio.
+        </Heading>
+        <p data-reveal="hero" data-reveal-order="2" class="mt-6 max-w-xl text-lg leading-[1.55] text-slate md:text-xl">
+          Diseñamos y desarrollamos sitios web, e-commerce y sistemas digitales que ayudan a las empresas a trabajar mejor y crecer.
+        </p>
+        <div data-reveal="hero" data-reveal-order="3" class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <Button href="#contacto"><span>Hablemos de tu proyecto</span><span aria-hidden="true" class="ml-2">→</span></Button>
+          <Button href="#proyectos" variant="text"><span>Ver proyectos</span><span aria-hidden="true" class="ml-2">→</span></Button>
+        </div>
       </div>
     </div>
   </div>
