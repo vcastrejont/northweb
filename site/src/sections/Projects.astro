@@ -3,7 +3,24 @@ import ConceptVisual from '../components/ConceptVisual.astro';
 import Heading from '../components/Heading.astro';
 import Section from '../components/Section.astro';
 
-const projects = [
+type Project = {
+  number: string;
+  category: string;
+  variant: 'site' | 'shop' | 'app';
+  featured: boolean;
+  title: string;
+  description: string;
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
+  imageCaption: string;
+  detailsLabel: string;
+  details: string;
+  href?: string;
+};
+
+const projects: Project[] = [
   {
     number: '01',
     category: 'Salud ocupacional',
@@ -38,21 +55,21 @@ const projects = [
   },
   {
     number: '03',
-    category: 'Sistema / Aplicación web',
+    category: 'Salud ocupacional / Sistema en desarrollo',
     variant: 'app',
     featured: false,
-    title: 'Proyecto 03',
-    description: 'Espacio reservado para una herramienta a la medida que ordena procesos internos.',
-    image: undefined,
-    imageWidth: undefined,
-    imageHeight: undefined,
-    imageAlt: undefined,
-    imageCaption: 'Imagen conceptual, no corresponde a un trabajo real.',
-    detailsLabel: 'Ver proyecto',
-    details: 'Este proyecto es un marcador de posición. El caso de estudio completo se publicará cuando esté disponible.',
+    title: 'SIEM — Sistema de expedientes y citas para salud ocupacional (en desarrollo)',
+    description: 'Rediseño y reconstrucción de la plataforma de gestión de pacientes de SIEM, clínica de salud ocupacional en Hermosillo con tres sucursales.',
+    image: '/images/siem-dashboard.png',
+    imageWidth: 1625,
+    imageHeight: 1090,
+    imageAlt: 'Panel de citas de SIEM con calendario mensual y agenda de citas del día.',
+    imageCaption: 'Panel de citas de la plataforma de gestión de pacientes de SIEM.',
+    detailsLabel: 'Estado del proyecto',
+    details: 'En desarrollo para SIEM, clínica de salud ocupacional en Hermosillo con tres sucursales.',
     href: undefined,
   },
-] as const;
+];
 ---
 
 <Section id="proyectos">
