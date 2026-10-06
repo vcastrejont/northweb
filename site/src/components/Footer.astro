@@ -3,10 +3,9 @@ import Container from './Container.astro';
 
 const nav = [
   { label: 'Servicios', href: '#servicios' },
-  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Proceso', href: '#proceso' },
+  { label: 'Proyectos', href: '#proyectos' },
   { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Blog', pending: true },
 ];
 const services = ['Sitios web', 'E-commerce', 'CRM y sistemas', 'Aplicaciones web'];
 const social = ['LinkedIn', 'Instagram'];
@@ -29,9 +28,7 @@ const pendingClass = 'inline-flex min-h-11 items-center text-sm text-white/70';
         <ul class="mt-3">
           {nav.map((item) => (
             <li>
-              {item.pending
-                ? <span class={pendingClass}>{item.label} <span class="ml-2 text-xs">(próximamente)</span></span>
-                : <a class={linkClass} href={item.href}>{item.label}</a>}
+              <a class={linkClass} href={item.href}>{item.label}</a>
             </li>
           ))}
         </ul>
