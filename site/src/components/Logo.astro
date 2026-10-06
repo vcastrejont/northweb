@@ -12,6 +12,6 @@ const dimensions = size === 'header'
   : { width: 200, height: 60, className: 'w-[200px]' };
 ---
 
-<a href={href} class:list={['inline-flex min-h-11 items-center', className]}>
+<a href={href} data-home-link class:list={['inline-flex min-h-11 items-center', className]}>
   <img src="/northweb-logo.svg" width={dimensions.width} height={dimensions.height} alt={alt} class:list={['h-auto', dimensions.className]} />
 </a>

@@ -42,6 +42,7 @@ const navigation = [
 
 <script>
   const header = document.querySelector<HTMLElement>('[data-header]');
+  const homeLink = header?.querySelector<HTMLAnchorElement>('[data-home-link]');
   const button = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const navigation = document.querySelector<HTMLElement>('[data-navigation]');
   const desktop = window.matchMedia('(min-width: 768px)');
@@ -74,6 +75,27 @@ const navigation = [
   };
 
   const isOpen = () => button?.getAttribute('aria-expanded') === 'true';
+
+  homeLink?.addEventListener('click', (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      window.location.pathname !== '/'
+    ) return;
+
+    event.preventDefault();
+    if (window.location.hash) {
+      window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}`);
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    });
+  });
 
   button?.addEventListener('click', () => setOpen(!isOpen()));
   navigation?.addEventListener('click', (e) => {
