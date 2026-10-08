@@ -1,0 +1,121 @@
+---
+import Container from '../components/Container.astro';
+
+const clients = [
+  { file: 'eim', name: 'Etiquetas e Impresiones de México (EIM)', width: 377, height: 146 },
+  { file: 'techosyparedes', name: 'Techos y Paredes', width: 466, height: 112 },
+  { file: 'ct', name: 'CT Computadoras y Tecnología', width: 540, height: 208 },
+  { file: 'decono', name: 'Decono', width: 502, height: 102 },
+  { file: 'lidex', name: 'Lidex', width: 366, height: 178 },
+  { file: 'loslagos', name: 'Los Lagos Club Campestre', width: 281, height: 207 },
+  { file: 'rubiopharma', name: 'Rubio Pharma', width: 498, height: 123 },
+  { file: 'sago', name: 'Grupo SAGO', width: 250, height: 75 },
+  { file: 'siem', name: 'SIEM', width: 373, height: 140 },
+  { file: 'suspiros', name: 'Suspiros Pastelerías', width: 321, height: 189 },
+  { file: 'thezia', name: 'Liceo Thezia', width: 420, height: 120 },
+];
+---
+
+<section
+  id="clientes"
+  aria-labelledby="clientes-title"
+  class="nw-clients border-y border-gray-100 bg-white py-12 md:py-16"
+>
+  <Container>
+    <div class="flex items-center justify-between gap-4">
+      <h2 id="clientes-title" class="text-2xl font-bold leading-[1.3] text-charcoal">Nuestros clientes</h2>
+      <button
+        type="button"
+        data-clients-toggle
+        aria-pressed="false"
+        class="min-h-11 rounded-md border border-gray-100 bg-white px-4 py-2 text-sm font-semibold text-charcoal transition-colors hover:border-primary hover:text-primary"
+      >
+        <span data-label>Pausar</span><span class="sr-only"> carrusel de clientes</span>
+      </button>
+    </div>
+  </Container>
+
+  <div class="nw-clients-viewport mt-8 overflow-hidden" data-clients-viewport tabindex="0" role="group" aria-label="Carrusel de logotipos de clientes">
+    <ul class="nw-clients-track" aria-label="Logotipos de clientes">
+      {clients.map((c) => (
+        <li class="nw-clients-item">
+          <img src={`/images/clients/${c.file}.webp`} alt={c.name} width={c.width} height={c.height} loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
+    <ul class="nw-clients-track" aria-hidden="true" data-clients-clone>
+      {clients.map((c) => (
+        <li class="nw-clients-item">
+          <img src={`/images/clients/${c.file}.webp`} alt="" width={c.width} height={c.height} loading="lazy" decoding="async" />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .nw-clients-viewport {
+    display: flex;
+    width: 100%;
+    max-width: 100vw;
+    --nw-clients-state: running;
+  }
+  .nw-clients-track {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: nw-clients-scroll 40s linear infinite;
+    animation-play-state: var(--nw-clients-state);
+  }
+  .nw-clients-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+  }
+  .nw-clients-item img {
+    height: 48px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+  @media (min-width: 768px) {
+    .nw-clients-item { padding: 0 44px; }
+    .nw-clients-item img { height: 60px; max-width: 200px; }
+  }
+  .nw-clients-viewport:hover,
+  .nw-clients-viewport:focus-within,
+  .nw-clients-viewport[data-paused='true'] {
+    --nw-clients-state: paused;
+  }
+  @keyframes nw-clients-scroll {
+    to { transform: translateX(-100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nw-clients-viewport { overflow-x: auto; }
+    .nw-clients-track { animation: none; }
+    .nw-clients-track[data-clients-clone] { display: none; }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-clients-toggle]');
+  const viewport = document.querySelector<HTMLElement>('[data-clients-viewport]');
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (btn && viewport) {
+    const label = btn.querySelector('[data-label]');
+    btn.addEventListener('click', () => {
+      const paused = viewport.dataset.paused !== 'true';
+      viewport.dataset.paused = String(paused);
+      btn.setAttribute('aria-pressed', String(paused));
+      if (label) label.textContent = paused ? 'Reproducir' : 'Pausar';
+    });
+    const sync = () => { btn.hidden = mq.matches; };
+    sync();
+    mq.addEventListener('change', sync);
+  }
+</script>
