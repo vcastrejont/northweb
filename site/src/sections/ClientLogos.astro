@@ -22,20 +22,10 @@ const clients = [
   class="nw-clients border-y border-gray-100 bg-white py-12 md:py-16"
 >
   <Container>
-    <div class="flex items-center justify-between gap-4">
-      <h2 id="clientes-title" class="text-2xl font-bold leading-[1.3] text-charcoal">Nuestros clientes</h2>
-      <button
-        type="button"
-        data-clients-toggle
-        aria-pressed="false"
-        class="min-h-11 rounded-md border border-gray-100 bg-white px-4 py-2 text-sm font-semibold text-charcoal transition-colors hover:border-primary hover:text-primary"
-      >
-        <span data-label>Pausar</span><span class="sr-only"> carrusel de clientes</span>
-      </button>
-    </div>
+    <h2 id="clientes-title" class="text-2xl font-bold leading-[1.3] text-charcoal">Nuestros clientes</h2>
   </Container>
 
-  <div class="nw-clients-viewport mt-8 overflow-hidden" data-clients-viewport tabindex="0" role="group" aria-label="Carrusel de logotipos de clientes">
+  <div class="nw-clients-viewport mt-8 overflow-hidden" tabindex="0" role="group" aria-label="Carrusel de logotipos de clientes">
     <ul class="nw-clients-track" aria-label="Logotipos de clientes">
       {clients.map((c) => (
         <li class="nw-clients-item">
@@ -88,8 +78,7 @@ const clients = [
     .nw-clients-item img { height: 60px; max-width: 200px; }
   }
   .nw-clients-viewport:hover,
-  .nw-clients-viewport:focus-within,
-  .nw-clients-viewport[data-paused='true'] {
+  .nw-clients-viewport:focus-within {
     --nw-clients-state: paused;
   }
   @keyframes nw-clients-scroll {
@@ -101,21 +90,3 @@ const clients = [
     .nw-clients-track[data-clients-clone] { display: none; }
   }
 </style>
-
-<script>
-  const btn = document.querySelector<HTMLButtonElement>('[data-clients-toggle]');
-  const viewport = document.querySelector<HTMLElement>('[data-clients-viewport]');
-  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (btn && viewport) {
-    const label = btn.querySelector('[data-label]');
-    btn.addEventListener('click', () => {
-      const paused = viewport.dataset.paused !== 'true';
-      viewport.dataset.paused = String(paused);
-      btn.setAttribute('aria-pressed', String(paused));
-      if (label) label.textContent = paused ? 'Reproducir' : 'Pausar';
-    });
-    const sync = () => { btn.hidden = mq.matches; };
-    sync();
-    mq.addEventListener('change', sync);
-  }
-</script>
