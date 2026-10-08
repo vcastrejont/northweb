@@ -1,1 +1,2 @@
 - [Browser verification](browser-verification.md) — shell Playwright may need the already-running Chromium executable rather than its default browser path.
+- [Generated image framing](media-composition.md) — verify actual dimensions and device framing; panoramic prompts can still yield square, cropped results.

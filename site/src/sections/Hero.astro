@@ -6,17 +6,20 @@ import Container from '../components/Container.astro';
 
 <section class="hero relative isolate overflow-hidden bg-charcoal pt-16 pb-80 text-white md:pt-24 md:pb-28 xl:pt-32 xl:pb-36">
   <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-    <img
-      src="/images/northweb-hero-studio.webp"
-      alt=""
-      width="1024"
-      height="590"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-      class="absolute inset-x-0 bottom-0 h-[22rem] w-full object-cover object-[72%_center] md:inset-0 md:h-full md:object-[right_center]"
-    />
-    <div class="absolute inset-x-0 bottom-0 h-[22rem] bg-gradient-to-b from-charcoal via-charcoal/20 to-transparent md:hidden"></div>
+    <picture>
+      <source media="(max-width: 767px)" srcset="/images/northweb-hero-premium-mobile.webp" width="1202" height="789" />
+      <img
+        src="/images/northweb-hero-premium.webp"
+        alt=""
+        width="1842"
+        height="789"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-x-0 bottom-0 h-[22rem] w-full object-contain object-bottom md:inset-0 md:h-full md:object-cover md:object-[right_center]"
+      />
+    </picture>
+    <div class="absolute inset-x-0 bottom-0 aspect-[1202/789] max-h-[22rem] bg-gradient-to-b from-charcoal via-charcoal/20 to-transparent md:hidden"></div>
     <div class="absolute inset-0 hidden bg-gradient-to-r from-charcoal/95 via-charcoal/60 to-transparent md:block"></div>
   </div>
   <Container>
